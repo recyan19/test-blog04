@@ -1,0 +1,48 @@
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #000; !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #000; !important;
+    box-shadow: 0 1px 0 0 #000; !important;
+}
+
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #000; !important;
+    box-shadow: 0 1px 0 0 #000; !important;
+}
+
+.icon_style{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: green;
+    cursor:pointer;
+}
+
+
+
+.admin-panel{
+    border: 1px solid #999;
+    border-radius: 2px;
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    opacity: 0.3;
+    padding: 15px;
+}
+
+.admin-panel:hover{
+    opacity: 1;
+}
+
+.admin-panel a{
+    display: block;
+    margin: 5px 0;
+}
+
+a.edit, a.delete{
+    display: none;
+}

@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block form %}
+	<h3>Sign Up</h3>
+	<form method="post" class="form-group">
+		{% csrf_token %}
+		{% for field in form %}
+		    <div class="row">
+            	<div class="input-field col s12">
+                	<i class="material-icons prefix">account_circle</i>
+                	{{ field }}
+                	<label  data-error="Username already taken">{{ field.label_tag }}</label>
+                	{% if field.help_text %}
+						<small style="display: none">{{ field.help_text }}</small>
+					{% endif %}
+
+					{% for error in field.errors %}
+						<p style="color: red">{{ error }}</p>
+					{% endfor %}
+		        </div>
+        	</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col s8">
+				<a href="{% url 'index' %}">Login</a>
+			</div>
+			<div class="col s4">
+				<div class="right">
+					<button class="btn blue waves-effect waves-light pull-s12">Register</button>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}
+
+

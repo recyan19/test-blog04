@@ -1,0 +1,47 @@
+{% extends 'blog/base_blog.html' %}
+{% load static %}
+{% block title %}
+    {{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">
+        {{ post.title }}
+    </h1>
+    <p>{{ post.body }}</p>
+    <br>
+        <p><a href="{{ post.get_like_url }}"><img src="{% static 'img/like_image.png'%}" style="width: 30px;height: 30px;"></a> {{ likes }} like(s)</p>
+    <br>
+    <h1 class="mt-5">Comments</h1>
+    <form  method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+            {{ field.label }}
+            {{ field }}
+        {% endfor %}
+        <button type="submit" name="button" class="btn btn-primary mt-2">Post a comment</button>
+
+    </form>
+    <br>
+	{% for comment in page_object.object_list %}
+		<div class="card mb-4">
+    		<div class="card-header">
+        		 <p>{{ comment.timestamp }}</p>
+        		 <p>{{ comment.author.email}}</p>
+    		</div>
+		    <div class="card-body">
+		        <p class="card-text">{{ comment.comment_text }}</p>
+		   
+		    </div>
+		</div>
+	{% endfor %}
+
+{% endblock %}
+
+

@@ -1,0 +1,20 @@
+{% load static %}
+<div class="card mb-4">
+    <div class="card-header">
+        {{ post.date_pub }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title}}</h5>
+        <p class="card-text">{{ post.body|truncatewords:15}}</p>
+        <a href="{{ post.get_absolute_url}}" class="btn btn-light">Read</a>
+    </div>
+      <div class="card-footer text-muted">
+          <p><a href="{{ post.get_like_url }}"><img src="{% static 'img/like_image.png'%}" style="width: 15px;height: 15px;"></a>
+          {% for p, l in likes %}
+            {% if p.id == post.id %}
+              {{ l }}
+            {% endif %}
+          {% endfor %}
+          </p>
+      </div>
+</div>
